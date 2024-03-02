@@ -2,13 +2,22 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-       <div>
-         Hello
+    <main className="flex min-h-screen flex-col ">
+       <div className= "flex h-[60px] bg-gray-300">
+        
+       </div>
+       <div className="flex flex-1 flex-row">
+          <div className="flex flex-1 bg-red-300">
+          </div>
+          <div className="flex flex-1 bg-white">
+          </div>
+          <div className= "flex flex-1 bg-black">
+          </div>
        </div>
     </main>
   );
 }
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -29,7 +38,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
 
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 
