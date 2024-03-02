@@ -1,0 +1,18 @@
+/* NiceButton.css */
+
+.nice-button {
+    background-color: #3498db;
+    color: #ffffff;
+    font-size: 16px;
+    height: 60px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nice-button:hover {
+    background-color: #2980b9;
+  }
+  
