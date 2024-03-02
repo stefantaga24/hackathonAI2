@@ -1,87 +1,45 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from 'react';
-import NiceButton from "./Nicebutton";
 
-type MessageType = {
-  key: number;
-  text: string;
-};
-
-const Message: React.FC<MessageType> = ({ text }) => <div className="message mt-[10px] mb-[10px]">{text}</div>;
-
-export default function Home() {
-
-  // Create a state variable to store the value of the input
-  const [inputValue, setInputValue] = useState('');
-  const [pythonResult, setPythonResult] = useState<string | null>(null);
-
-  // Event handler to update the state when the input value changes
-  const handleInputChange = (e: any) => {
-    setInputValue(e.target.value);
-  };
-  const [messages, setMessages] = useState<MessageType[]>([]);
-
-  const handleClick = () => {
-    // Generate a unique key for each message
-    var key = messages.length;
-    var key2 = messages.length + 1;
-    console.log(key);
-    console.log(key2);
-    setMessages([...messages, { key : key, text: inputValue}]);
-    messages.push({ key : key, text: inputValue });
-    //setInputValue('');
-    fetch(`http://localhost:3000/run-script?arg=${encodeURIComponent(inputValue)}`)
-    .then(response => response.text())
-    .then(message => {
-      setMessages([...messages, { key : key2, text: message.toString() }]);
-    })
-  };
+export default function Home(){
   return (
-    <main className="flex min-h-screen flex-col ">
-      <div className="flex h-[60px] bg-gray-300">
+      <main className="flex min-h-screen flex-col " style = {{backgroundImage: "url('BackgroundImage.png')"}}>
+    <div className="flex w-full h-[60px] justify-center mt-[30px] opacity-100 ">
+        <div className = "flex w-[80%] h-[83px] bg-[#D9D9D9] rounded-[40px] opacity-70">
+        <div className = "flex flex-1 items-center opacity-100">
+        <div className = "opacity-100 flex flex-row">
+        <Image 
+          
+          className = "ml-[50px] opacity-100"
+          src={'/Logo.png'}
+          alt="Our logo" 
+          width={57}
+          height={59}
+          >
+        </Image> 
+        <div className = "flex flex-1 font-bold ml-[5px] text-[30px] justify-center items-center">
+        TAsk AI
+        </div>
+        </div> 
+          </div>
+          
+          <div className = "flex flex-1 items-center justify-end">
+              <div className = "font-bold text-[30px] mr-[30px]">
+                Log in 
+              </div>
+              <div className = "font-bold text-[30px] mr-[30px]">
+                Demo
+              </div>
+          </div>
+        </div> 
+    </div>
+    <div className="flex flex-1 flex-row">
 
-      </div>
-      <div className="flex flex-1 flex-row">
-        <div className="flex flex-1 bg-red-300">
-        </div>
-        <div className="flex flex-1 bg-white">
-          <div>
-            Upload your file here
-          </div>
-        </div>
-        <div className="flex flex-1 flex-col">
-          <div className="flex flex-1 justify-center items-center flex-col">
-            <div className="h-[50px]">
-              AI Conversation
-            </div>
-            <div className="flex-1 w-full bg-white">
-              <div className = "h-[80%] overflow-auto">
-              {messages.map((message) => (
-          <       Message key={message.key} text={message.text} />
-              ))}
-              </div>
-              <div className = "flex flex-row h-[20%]  items-center justify-between">
-              <input
-                type="text"
-                value={inputValue}
-                onChange={handleInputChange}
-                placeholder="Type something..."
-                className = "w-[60%]"
-              />
-              <NiceButton label="Click me" onClick={handleClick} />
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-1">
-          </div>
-        </div>
-      </div>
-    </main>
+    </div>
+  </main>
   );
 }
-
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
