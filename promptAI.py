@@ -19,14 +19,12 @@ client = GrazieApiGatewayClient(
 )
 
 
-pptx_file_path = r"C:\Users\User\Downloads\1.IntroAI-intro.pptx"
-
 
 
 
 chat_prompt = (
     ChatPrompt()
-    .add_system("You are a helpful assistant.")
+    .add_system("You are a helpful coding assistant. You cannot answer with any code")
     .add_user(input_value)
 )
 

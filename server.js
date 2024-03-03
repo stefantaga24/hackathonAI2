@@ -28,6 +28,29 @@ app.get('/run-script', (req, res) => {
   });
 });
 
+
+app.get('/highlight-errors', (req, res) => {
+  //const arg = req.file.buffer.toString('base64');
+  //console.log(arg);
+  console.log("Hello");
+  //const child = spawn('python', ['./highlightErrors.py',req.file.buffer.toString('base64')]);
+
+/* let scriptOutput = "";
+
+ child.stdout.on('data', (data) => {
+   console.log(`stdout: ${data}`);
+   scriptOutput += data.toString();
+ });
+
+ child.stderr.on('data', (data) => {
+   console.error(`stderr: ${data}`);
+ });
+
+ child.on('close', (code) => {
+   console.log(`child process exited with code ${code}`);
+   res.send(scriptOutput);
+ });*/
+});
 app.listen(3000, () => {
   console.log('Server started on port 3000');
 });
