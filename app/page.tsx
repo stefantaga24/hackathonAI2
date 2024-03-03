@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function Home(){
   return (
       <main className="flex min-h-screen flex-col " style = {{backgroundImage: "url('BackgroundImage.png')"}}>
-    <div className="flex w-full h-[60px] justify-center mt-[30px] opacity-100 ">
+    <div className="flex w-full h-[120px] justify-center mt-[30px] opacity-100 ">
         <div className = "flex w-[80%] h-[83px] bg-[#D9D9D9] rounded-[40px] opacity-70">
         <div className = "flex flex-1 items-center opacity-100">
         <div className = "opacity-100 flex flex-row">
@@ -25,17 +25,23 @@ export default function Home(){
           </div>
           
           <div className = "flex flex-1 items-center justify-end">
-              <div className = "font-bold text-[30px] mr-[30px]">
+              <Link key={""}
+        href={"loginPage"} className = "font-bold text-[30px] mr-[30px]">
                 Log in 
-              </div>
+              </Link>
               <div className = "font-bold text-[30px] mr-[30px]">
                 Demo
               </div>
           </div>
         </div> 
     </div>
-    <div className="flex flex-1 flex-row">
-
+    <div className="flex flex-1 flex-col justify-center items-center mb-[100px]">
+        <div className = "w-full flex justify-center text-[80px] font-bold">
+        The&nbsp;<span className="text-[#65204A]">TA</span>&nbsp;to&nbsp;<span className="text-[#65204A]">ask</span>
+        </div>
+        <div className = "w-full flex justify-center text-[100px] font-bold">
+          when&nbsp;you&nbsp;do&nbsp;your&nbsp;<span className="text-[#65204A]">task</span>.
+        </div>
     </div>
   </main>
   );
@@ -63,6 +69,7 @@ const app = initializeApp(firebaseConfig);
 
 
 import { getFirestore, collection, addDoc } from "firebase/firestore";
+import Link from "next/link";
 
 const db = getFirestore(app);
 
