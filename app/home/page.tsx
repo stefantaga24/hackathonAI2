@@ -69,7 +69,9 @@ export default function Home() {
 
   const handleFileUpload = () => {
     // Access the file input using the ref and trigger the click event
-    fileInputRef.current.click();
+    if (fileInputRef.current) {
+      (fileInputRef.current as HTMLInputElement).click();
+    }
   };
 
   const handleFileChange = (event: any) => {
@@ -108,12 +110,7 @@ export default function Home() {
   };
   const [messages, setMessages] = useState<MessageType[]>([]);
   const [fileText, setFileText] = useState<String> ('');
-  const myDivRef = useRef(null);
-
-  useEffect(() => {
-    // Scroll to the bottom when the component is mounted
-    myDivRef.current.scrollTop = myDivRef.current.scrollHeight;
-  }, []);
+  const myDivRef = useRef<HTMLDivElement>(null);
 
   const handleClick = () => {
     // Generate a unique key for each message
@@ -123,14 +120,18 @@ export default function Home() {
     console.log(key2);
     setMessages([...messages, { key: key, text: inputValue, emitter: "user" }]);
     messages.push({ key: key, text: inputValue, emitter: "user" });
-    myDivRef.current.scrollTop = myDivRef.current.scrollHeight;
+    if (myDivRef.current) {
+      myDivRef.current.scrollTop = myDivRef.current.scrollHeight;
+    }
     //setInputValue('');
     fetch(`http://localhost:3000/run-script?arg=${encodeURIComponent(inputValue)}`)
       .then(response => response.text())
       .then(message => {
         setMessages([...messages, { key: key2, text: message.toString(), emitter: "AI" }]);
+        if (myDivRef.current) {
+          myDivRef.current.scrollTop = myDivRef.current.scrollHeight;
+        }
       })
-    myDivRef.current.scrollTop = myDivRef.current.scrollHeight;
   };
   return (
     <main className="flex min-h-screen flex-row" style={{ backgroundImage: "url('BackgroundImage.png')" }}>
